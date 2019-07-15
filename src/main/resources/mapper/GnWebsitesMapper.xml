@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boot.elasticsearch.dao.db.GnWebsitesMapper">
+<!--一对多关系-->
+<resultMap id="gwMap" type="com.example.boot.elasticsearch.entity.GnWebsites">
+    <id column="id" property="id"/>
+    <result column="name" property="name" />
+    <result column="icon" property="icon" />
+    <result column="url" property="url" />
+    <result column="category_id" property="categoryId" />
+    <result column="big_category_id" property="bigCategoryId" />
+    <result column="level" property="level" />
+    <result column="source" property="source" />
+    <result column="apply" property="apply" />
+    <result column="is_black" property="isBlack" />
+    <result column="valid" property="valid" />
+    <result column="create_time" property="createTime" />
+    <result column="create_user" property="createUser" />
+    <result column="modify_user" property="modifyUser" />
+    <result column="modify_time" property="modifyTime" />
+</resultMap>
+
+<select id="queryBatch" resultMap="gwMap">
+        SELECT * FROM gn_websites
+        where id > ${id}
+        ORDER BY id
+        LIMIT ${count}
+    </select>
+</mapper>
